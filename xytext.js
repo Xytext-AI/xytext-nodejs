@@ -43,11 +43,12 @@ class Xytext {
         this.stage = stage;
     }
 
-    async invoke(inputText) {
+    async invoke(inputText, extras = {}) {
         const payload = {
             input: inputText,
             func_id: this.funcId,
-            stage: this.stage
+            stage: this.stage,
+            ...extras
         };
 
         try {
