@@ -54,7 +54,7 @@ class Xytext {
             const response = await axios.post(this.baseUrl, payload, { headers: this.headers });
             return new XytextResponse(response);
         } catch (error) {
-            console.error(error.message);
+            console.error("Xytext Error Reason: " + error.response.data.message);
             return new XytextResponse({ data: { success: false, message: error.message } });
         }
     }
