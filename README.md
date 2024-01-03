@@ -23,8 +23,9 @@ async function exampleUsage() {
     const funcId = "your_func_id";
     const stage = "your_stage";
     const authToken = "your_auth_token";
+    const timeout = 900;
 
-    const xt = new Xytext(funcId, stage, authToken);
+    const xt = new Xytext(funcId, stage, authToken, timeout);
     try {
         const response = await xt.invoke("Your input text here");
         console.log(response.result);
@@ -44,13 +45,14 @@ This is the primary class used to interact with the Xytext API.
 
 #### Constructor
 
-`new Xytext(funcId, stage, authToken)`
+`new Xytext(funcId, stage, authToken, timeout)`
 
 Parameters:
 
 - `funcId` (String): The function ID for the Xytext API.
 - `stage` (String): The stage of the API environment ("staging", "prod").
 - `authToken` (String): Your authorization token for the Xytext API.
+- `timeout` (Integer): The timeout for the API request in seconds. Default is 900 seconds (15 minutes).
 
 #### Method: `invoke(inputText)`
 

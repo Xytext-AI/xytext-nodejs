@@ -33,7 +33,7 @@ class XytextResponse {
 }
 
 class Xytext {
-    constructor(funcId, stage, authToken) {
+    constructor(funcId, stage, authToken, timeout) {
         this.baseUrl = "https://api.xytext.com/invoke";
         this.headers = {
             "Content-Type": "application/json",
@@ -41,7 +41,10 @@ class Xytext {
         };
         this.funcId = funcId;
         this.stage = stage;
+        this.timeout = timeout || 900;
     }
+    
+    
 
     async invoke(inputText, extras = {}) {
         const payload = {
@@ -50,9 +53,14 @@ class Xytext {
             stage: this.stage,
             ...extras
         };
+        
+        const config = {
+            headers: this.headers,
+            timeout: this.timeout
+        };
 
         try {
-            const response = await axios.post(this.baseUrl, payload, { headers: this.headers });
+            const response = await axios.post(this.baseUrl, payload, config);
             return new XytextResponse(response);
         } catch (error) {
             console.error("Xytext Error Reason: " + error.response.data.message);
