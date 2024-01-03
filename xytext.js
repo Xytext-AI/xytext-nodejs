@@ -41,7 +41,7 @@ class Xytext {
         };
         this.funcId = funcId;
         this.stage = stage;
-        this.timeout = timeout || 900;
+        this.timeout = timeout || 900000;
     }
     
     
