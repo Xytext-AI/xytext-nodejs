@@ -64,7 +64,7 @@ class Xytext {
             return new XytextResponse(response);
         } catch (error) {
             console.error("Xytext Error Reason: " + error.response.data.message);
-            return new XytextResponse({ data: { success: false, message: error.message } });
+            return new XytextResponse({ data: { success: false, message: error.response.data.message } });
         }
     }
 }
